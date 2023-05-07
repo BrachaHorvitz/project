@@ -1,0 +1,11 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "A server-side application for managing a corona database for a large health HMO. It includes input and retrieval of records and access to a MongoDB database through a REST API.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bracha Horvitz",
+  "license": "ISC"
+}
