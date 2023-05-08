@@ -1,36 +1,34 @@
-const Corona = require('../models/corona');
+const Corona = require('../models/coronaModel');
 
-exports.getCoronaData = async (req, res) => {
+exports.createCorona = async (req, res) => {
   try {
-    const memberId = req.params.memberId;
-    const coronaData = await Corona.findOne({ memberId });
-    if (!coronaData) {
-      return res.status(404).send('Corona data not found');
-    }
-    res.json(coronaData);
+    const corona = await Corona.create(req.body);
+    res.status(201).json(corona);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ message: err.message });
   }
 };
 
-exports.addCoronaData = async (req, res) => {
+exports.getAllCoronas = async (req, res) => {
   try {
-    const { memberId, vaccines, positiveResultDate, recoveryDate } = req.body;
-    let coronaData = await Corona.findOne({ memberId });
-    if (coronaData) {
-      return res.status(400).send('Corona data already exists');
-    }
-    coronaData = new Corona({
-      memberId,
-      vaccines,
-      positiveResultDate,
-      recoveryDate
-    });
-    await coronaData.save();
-    res.json(coronaData);
+    const coronas = await Corona.find();
+    res.status(200).json(coronas);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getCoronaById = async (req, res) => {
+  try {
+    const corona = await Corona.findById(req.params.id);
+    if (!corona) {
+      return res.status(404).json({
+        status: 'fail',
+        message: 'Corona not found',
+      });
+    }
+    res.status(200).json(corona);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 };

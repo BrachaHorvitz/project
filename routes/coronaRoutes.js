@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const coronaController = require('../controllers/coronaController');
 
-// GET corona data by member ID
-router.get('/:memberId', coronaController.getCoronaData);
-
-// POST new corona data
-router.post('/', coronaController.addCoronaData);
+router.get('/', coronaController.getAllCoronas);
+router.post('/', coronaController.createCorona);
+router.get('/:id', coronaController.getCoronaById);
 
 module.exports = router;

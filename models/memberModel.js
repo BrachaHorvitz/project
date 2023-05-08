@@ -1,4 +1,3 @@
-// member.js
 
 const mongoose = require('mongoose');
 
@@ -17,18 +16,31 @@ const memberSchema = new mongoose.Schema({
     unique: true
   },
   address: {
-    city: String,
-    street: String,
-    number: String
+    city: {
+      type: String,
+      required: true
+    },
+    street: {
+      type: String,
+      required: true
+    },
+    number: {
+      type: String,
+      required: true
+    }
   },
   birthDate: {
     type: Date,
     required: true
   },
   telephone: String,
-  mobilePhone: String
+  mobilePhone: {
+    type: String,
+    required: true
+  }
 });
 
 const Member = mongoose.model('Member', memberSchema);
 
 module.exports = Member;
+
