@@ -11,7 +11,7 @@ exports.getAllMembers = async (req, res) => {
 
 exports.getMemberById = async (req, res) => {
   try {
-    const member = await Member.findOne({id: req.params.id});
+    const member = await Member.findById(req.params.id);
     res.json(member);
   } catch (err) {
     res.status(500).json({ message: err.message });
