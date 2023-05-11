@@ -1,8 +1,17 @@
 const Corona = require('../models/coronaModel');
+const Member = require('../models/memberModel');
 
 exports.createCorona = async (req, res) => {
   try {
-    const corona = await Corona.create(req.body);
+    const member = await Member.findOne({ id: req.body.member });
+    
+    if (!member) {
+      return res.status(400).json({message: 'Member not found'});
+    }
+    
+    const coronaData = { ...req.body, member: member._id};
+    const corona = await Corona.create(coronaData);
+    
     res.status(201).json(corona);
   } catch (err) {
     res.status(500).json({ message: err.message });
