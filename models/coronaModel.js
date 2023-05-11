@@ -29,11 +29,11 @@ const coronaSchema = new mongoose.Schema({
   vaccineManufacturers: {
     type: [String],
     validate: {
-      // Check that the array has at most four elements
+      // check that the number of manufacturers is the same as vaccine dates
       validator: function (manufacturers) {
-        return manufacturers.length <= 4;
+        return manufacturers.length === this.vaccineDates.length;
       },
-      message: 'Maximum of 4 vaccine manufacturers allowed'
+      message: 'Number of manufacturers should be the same as vaccine dates'
     }
   },
   // A date representing the date of a positive Corona test result
@@ -66,14 +66,14 @@ const coronaSchema = new mongoose.Schema({
         },
         message: 'Recovery date should be after positive result date'
       },
-      {
-        // Check that the date is before or on today's date
-        validator: function(value) {
-          const today = new Date();
-          return value <= today;
-        },
-        message: 'Recovery date should be before or on today'
-      }
+      // {
+      //   // Check that the date is before or on today's date
+      //   validator: function(value) {
+      //     const today = new Date();
+      //     return value <= today;
+      //   },
+      //   message: 'Recovery date should be before or on today'
+      // }
     ]
   }    
 });
