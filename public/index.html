@@ -6,13 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script src="index.js"></script>
+    <style>
+        body {
+            text-align: center;
+        }
+        
+        p {
+            font-size: 24px;
+        }
+        
+        button {
+            padding: 8px 16px;
+            border: none;
+            background-color: #008CBA;
+            color: white;
+            font-size: 18px;
+        }
+        
+        button:hover {
+            background-color: #006C9E;
+        }
+    </style>
+</head>
 </head>
 <body>
-    
+    <button onclick="displayNotVaccinatedCount()">Show Not Vaccinated Count</button>
+    <br/>
+    <p id="not-vaccinated-count"></p>
+    <br/>
     <button onclick="viewActivePatientsChart()">view active patients chart</button>
-
+    <br/>
     <canvas id="active-patients-chart"></canvas>
     
 </body>

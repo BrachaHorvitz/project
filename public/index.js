@@ -2,7 +2,6 @@ function viewActivePatientsChart(){
     fetch('/corona')
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         // Filter data to last month
         const lastMonthData = data.filter(c => {
             const positiveResultDate = new Date(c.positiveResultDate);
@@ -14,7 +13,6 @@ function viewActivePatientsChart(){
                 positiveResultDate >= lastMonthDate || recoveryDate >= lastMonthDate
                 );
         });
-        console.log(lastMonthData);
 
         // Create labels and data for the chart
         const labels = [];
@@ -48,4 +46,17 @@ function viewActivePatientsChart(){
         });
     })
     .catch(error => console.error(error));
+}
+
+//assuming every member has exactly one record of corona in the database
+function displayNotVaccinatedCount() {
+    fetch('/corona')
+        .then(response => response.json())
+        .then(data => {
+            const notVaccinatedMembers = data.filter(corona => corona.vaccineDates.length < 1);
+            const notVaccinatedCount = notVaccinatedMembers.length;
+            document.getElementById('not-vaccinated-count').innerHTML = notVaccinatedCount;
+        })
+        .catch(error => console.error(error));
+
 }
