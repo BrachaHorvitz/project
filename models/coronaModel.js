@@ -65,15 +65,7 @@ const coronaSchema = new mongoose.Schema({
           return value >= this.positiveResultDate;
         },
         message: 'Recovery date should be after positive result date'
-      },
-      // {
-      //   // Check that the date is before or on today's date
-      //   validator: function(value) {
-      //     const today = new Date();
-      //     return value <= today;
-      //   },
-      //   message: 'Recovery date should be before or on today'
-      // }
+      }
     ]
   }    
 });

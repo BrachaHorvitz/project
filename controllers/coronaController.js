@@ -5,7 +5,6 @@ exports.createCorona = async (req, res) => {
   try {
     // Retrieve single Member record by ID from database
     const member = await Member.findOne({ id: req.body.member });
-    
     // if there's no member with the request ID - return error message
     if (!member) {
       return res.status(400).json({message: 'Member not found'});
