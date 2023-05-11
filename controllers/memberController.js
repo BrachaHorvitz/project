@@ -15,7 +15,7 @@ exports.getAllMembers = async (req, res) => {
 exports.getMemberById = async (req, res) => {
   try {
     // Retrieve single Member record by ID from database
-    const member = await Member.findById(req.params.id);
+    const member =  await Member.findOne({ id: req.params.id });
 
     // Return error if Member record is not found
     if (!member) {
